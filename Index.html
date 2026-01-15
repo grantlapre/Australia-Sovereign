@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Australia Sovereign — key issues, plain-English explanations, and ways to act." />
+  <title>Australia Sovereign</title>
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.14);
+      --accent: #6ea8ff;
+      --accent2:#7ef0d6;
+      --danger:#ff6b6b;
+      --ok:#9cff6b;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    /* Light mode */
+    [data-theme="light"]{
+      --bg: #f7f9ff;
+      --panel: rgba(11,61,145,0.06);
+      --panel2: rgba(11,61,145,0.09);
+      --text: rgba(8,18,40,0.92);
+      --muted: rgba(8,18,40,0.70);
+      --border: rgba(11,61,145,0.18);
+      --accent: #0b3d91;
+      --accent2:#0aa3a3;
+      --shadow: 0 16px 34px rgba(11,61,145,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(900px 400px at 12% 10%, rgba(110,168,255,.18), transparent 55%),
+        radial-gradient(700px 380px at 82% 18%, rgba(126,240,214,.16), transparent 55%),
+        radial-gradient(900px 500px at 40% 110%, rgba(110,168,255,.10), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 70px}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,0));
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    [data-theme="light"] header{
+      background: linear-gradient(to bottom, rgba(247,249,255,.92), rgba(247,249,255,0));
+      border-bottom:1px solid rgba(11,61,145,0.10);
+    }
+
+    .topbar{
+      max-width:var(--max); margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width:220px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    [data-theme="light"] .logo{border:1px solid rgba(11,61,145,0.18)}
+    .brand h1{font-size:16px; margin:0; letter-spacing:.2px}
+    .brand p{margin:0; font-size:12px; color:var(--muted)}
+
+    nav{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      text-decoration:none;
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .chip:hover{background: rgba(255,255,255,0.07)}
+    [data-theme="light"] .chip{background: rgba(11,61,145,0.04)}
+    [data-theme="light"] .chip:hover{background: rgba(11,61,145,0.07)}
+
+    .btn{
+      cursor:pointer;
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color:var(--text);
+    }
+    .btn:hover{background: rgba(255,255,255,0.07)}
+
+    .hero{
+      padding:34px 0 10px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .brand{min-width:auto}
+    }
+
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, var(--panel), rgba(0,0,0,0));
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="light"] .card{
+      background: linear-gradient(180deg, var(--panel), rgba(255,255,255,0));
+    }
+
+    .heroMain{padding:22px}
+    .heroMain h2{
+      font-size:34px; margin:0 0 8px; line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .heroMain p{margin:0 0 14px; color:var(--muted); font-size:15px}
+    .slogan{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border:1px dashed var(--border);
+      border-radius:14px;
+      background: rgba(255,255,255,0.03);
+      color:var(--text);
+      margin-top:8px;
+    }
+    .slogan code{
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .heroSide{padding:18px; display:flex; flex-direction:column; gap:12px}
+    .sideRow{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      background: rgba(255,255,255,0.03);
+    }
+    .sideRow h3{margin:0 0 6px; font-size:13px; color:var(--muted); letter-spacing:.2px; text-transform:uppercase}
+    .sideRow p{margin:0; font-size:14px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .cta{
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(110,168,255,.18), rgba(126,240,214,.12));
+      font-weight:600;
+    }
+    .cta:hover{filter:brightness(1.06)}
+    .cta.secondary{
+      background: rgba(255,255,255,0.03);
+      font-weight:600;
+    }
+
+    section{margin-top:26px}
+    section h2{
+      font-size:18px; margin:0 0 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .muted{color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 620px){
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .issue{padding:16px; display:flex; flex-direction:column; gap:10px}
+    .tagRow{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color:var(--muted);
+    }
+    .issue h3{margin:0; font-size:16px}
+    .issue p{margin:0; color:var(--muted); font-size:14px}
+    .issue ul{margin:0; padding-left:18px; color:var(--muted); font-size:14px}
+    .issue li{margin:6px 0}
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      font-size:13px;
+    }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){ .twoCol{grid-template-columns:1fr} }
+
+    .panel{padding:16px}
+    .panel h3{margin:0 0 8px; font-size:15px}
+    .panel p{margin:0; color:var(--muted); font-size:14px}
+    .panel .mini{margin-top:10px; font-family:var(--mono); font-size:12px; color:var(--muted); white-space:pre-wrap}
+
+    footer{
+      margin-top:30px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
+    }
+
+    .searchRow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    input[type="search"]{
+      width:min(520px, 100%);
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:10px 12px;
+      background: rgba(255,255,255,0.03);
+      color:var(--text);
+      outline:none;
+    }
+    input[type="search"]::placeholder{color: rgba(255,255,255,0.55)}
+    [data-theme="light"] input[type="search"]::placeholder{color: rgba(8,18,40,0.55)}
+    .smallBtn{
+      cursor:pointer;
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:10px 12px;
+      background: rgba(255,255,255,0.03);
+      color:var(--text);
+      font-weight:600;
+    }
+    .smallBtn:hover{background: rgba(255,255,255,0.07)}
+  </style>
+</head>
+
+<body data-theme="dark">
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Australia Sovereign</h1>
+        <p>Plain-English issues • due process • accountability</p>
+      </div>
+    </div>
+
+    <nav aria-label="Primary">
+      <a class="chip" href="#issues">Issues</a>
+      <a class="chip" href="#principles">Principles</a>
+      <a class="chip" href="#act">Take Action</a>
+      <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">Toggle Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="card heroMain">
+      <h2>Australia Sovereign</h2>
+      <p>
+        A simple public page that explains key issues in plain English and points to practical actions.
+        Replace the sample issues below with your own.
+      </p>
+
+      <div class="slogan" title="Optional slogan">
+        <strong>Principle:</strong>
+        <span>Rational thinking &amp; due process over knee-jerk laws</span>
+        <code>— edit this line in index.html</code>
+      </div>
+
+      <div class="actions">
+        <a class="cta" href="#act">Take Action</a>
+        <a class="cta secondary" href="#issues">Read the Issues</a>
+      </div>
+    </div>
+
+    <aside class="card heroSide" aria-label="Quick summary">
+      <div class="sideRow">
+        <h3>What this is</h3>
+        <p>A clean one-page site for highlighting issues, timelines, and calls to action.</p>
+      </div>
+      <div class="sideRow">
+        <h3>How to edit</h3>
+        <p>Scroll to the <span class="pill">ISSUES</span> section in the code and edit the list.</p>
+      </div>
+      <div class="sideRow">
+        <h3>Optional</h3>
+        <p>Add petition links, MP contact details, and a short “why it matters” statement.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section id="issues">
+    <h2>
+      <span>Main Issues</span>
+      <span class="muted" id="countLabel">Loading…</span>
+    </h2>
+
+    <div class="searchRow" style="margin-bottom:12px">
+      <input id="search" type="search" placeholder="Search issues (e.g., cost of living, due process, housing)…" />
+      <button class="smallBtn" type="button" id="clearBtn">Clear</button>
+    </div>
+
+    <div class="grid" id="issuesGrid" aria-live="polite"></div>
+  </section>
+
+  <section id="principles">
+    <h2>Guiding Principles</h2>
+    <div class="twoCol">
+      <div class="card panel">
+        <h3>1) Due process first</h3>
+        <p>
+          Major law changes should be tested, debated, and reviewed — not rushed under public pressure.
+          Strong laws require strong process.
+        </p>
+        <div class="mini">Edit: Replace this paragraph with your own constitutional / civics angle.</div>
+      </div>
+
+      <div class="card panel">
+        <h3>2) Target harm, not speech broadly</h3>
+        <p>
+          Laws should focus on clearly defined harmful conduct (threats, harassment, incitement where applicable)
+          and preserve legitimate discussion, criticism, and debate.
+        </p>
+        <div class="mini">Edit: Add your preferred wording and safeguards you want.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="act">
+    <h2>Take Action</h2>
+    <div class="twoCol">
+      <div class="card panel">
+        <h3>Quick actions (copy/paste)</h3>
+        <ul>
+          <li><strong>Email your MP:</strong> ask for more time, committee review, and clear definitions.</li>
+          <li><strong>Share this page:</strong> link it on socials or messaging groups.</li>
+          <li><strong>Start a petition:</strong> include specific demands and a clear timeline.</li>
+        </ul>
+        <div class="mini">Tip: Add your MP name + electorate + email address here.</div>
+      </div>
+
+      <div class="card panel">
+        <h3>Petition / campaign links</h3>
+        <p class="muted">Replace these with your real links:</p>
+        <ul>
+          <li><a href="#" onclick="return false;">Change.org petition (placeholder)</a></li>
+          <li><a href="#" onclick="return false;">Briefing note (placeholder)</a></li>
+          <li><a href="#" onclick="return false;">Media kit (placeholder)</a></li>
+        </ul>
+        <div class="mini">Edit: Swap # for real URLs when ready.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> Australia Sovereign • Built for GitHub Pages</div>
+    <div class="muted">Edit the issues array in the script to update content.</div>
+  </footer>
+</main>
+
+<script>
+  // ====== EDIT HERE: Add/replace your main issues ======
+  // Tip: Keep descriptions short and practical. Add 3–6 bullet points per issue.
+  const ISSUES = [
+    {
+      title: "Cost of Living & Household Pressure",
+      tags: ["Economy", "Families"],
+      summary: "High prices, rising rents, and mortgage stress are squeezing households.",
+      bullets: [
+        "Focus on real-world relief, not just headlines.",
+        "Transparency on spending, debt, and the trade-offs of policy choices.",
+        "Support measures that are targeted and measurable."
+      ]
+    },
+    {
+      title: "Housing Affordability & Rental Stability",
+      tags: ["Housing", "Youth"],
+      summary: "Housing supply, planning, and rental conditions are defining social stability.",
+      bullets: [
+        "Increase supply without lowering build quality.",
+        "Reduce bottlenecks in approvals and infrastructure.",
+        "Protect renters while keeping incentives to build."
+      ]
+    },
+    {
+      title: "Due Process & Rushed Lawmaking",
+      tags: ["Civics", "Accountability"],
+      summary: "Major laws should not be rushed—especially when rights and freedoms are affected.",
+      bullets: [
+        "Adequate time for public scrutiny and submissions.",
+        "Committee review, expert hearings, and impact analysis.",
+        "Clear definitions and safeguards against overreach."
+      ]
+    },
+    {
+      title: "Freedom of Legitimate Debate",
+      tags: ["Rights", "Speech"],
+      summary: "You can oppose hate and still insist laws are precise and proportionate.",
+      bullets: [
+        "Target harmful conduct with clear thresholds.",
+        "Avoid vague categories that chill lawful discussion.",
+        "Ensure review mechanisms and sunset clauses where appropriate."
+      ]
+    },
+    {
+      title: "Media Incentives & Political Panic Cycles",
+      tags: ["Media", "Culture"],
+      summary: "Outrage cycles can pressure governments into fast, poorly drafted responses.",
+      bullets: [
+        "Slow down before legislating under pressure.",
+        "Publish evidence for claimed urgency.",
+        "Require post-implementation review and reporting."
+      ]
+    },
+    {
+      title: "Government Transparency & Trust",
+      tags: ["Integrity", "Public Service"],
+      summary: "Trust improves when decisions are explained, recorded, and reviewable.",
+      bullets: [
+        "Clear disclosure of decision pathways and reasoning.",
+        "Stronger accountability for misuse of power.",
+        "Open data where feasible and safe."
+      ]
+    }
+  ];
+  // ====== END EDIT SECTION ======
+
+  const elGrid = document.getElementById("issuesGrid");
+  const elCount = document.getElementById("countLabel");
+  const elSearch = document.getElementById("search");
+  const elClear = document.getElementById("clearBtn");
+
+  function issueMatches(issue, q){
+    if(!q) return true;
+    const hay = (issue.title + " " + issue.summary + " " + (issue.tags||[]).join(" ") + " " + (issue.bullets||[]).join(" ")).toLowerCase();
+    return hay.includes(q);
+  }
+
+  function renderIssues(list){
+    elGrid.innerHTML = "";
+    list.forEach((issue) => {
+      const card = document.createElement("article");
+      card.className = "card issue";
+
+      const tags = (issue.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+
+      const bullets = (issue.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join("");
+
+      card.innerHTML = `
+        <div class="tagRow">${tags}</div>
+        <h3>${escapeHtml(issue.title)}</h3>
+        <p>${escapeHtml(issue.summary || "")}</p>
+        ${bullets ? `<ul>${bullets}</ul>` : ""}
+      `;
+
+      elGrid.appendChild(card);
+    });
+
+    elCount.textContent = `${list.length} issue${list.length === 1 ? "" : "s"}`;
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, s => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+    }[s]));
+  }
+
+  function applySearch(){
+    const q = (elSearch.value || "").trim().toLowerCase();
+    const filtered = ISSUES.filter(i => issueMatches(i, q));
+    renderIssues(filtered);
+  }
+
+  // Theme toggle with localStorage
+  const themeBtn = document.getElementById("themeBtn");
+  const savedTheme = localStorage.getItem("as_theme");
+  if(savedTheme) document.body.setAttribute("data-theme", savedTheme);
+
+  themeBtn.addEventListener("click", () => {
+    const current = document.body.getAttribute("data-theme") || "dark";
+    const next = current === "dark" ? "light" : "dark";
+    document.body.setAttribute("data-theme", next);
+    localStorage.setItem("as_theme", next);
+  });
+
+  elSearch.addEventListener("input", applySearch);
+  elClear.addEventListener("click", () => { elSearch.value = ""; applySearch(); });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Initial render
+  renderIssues(ISSUES);
+</script>
+</body>
+</html>
